@@ -1,0 +1,16 @@
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    border: aquamarine 2px solid;
+    border-radius: 5px;
+    padding: 20px;
+}
+.button{
+    border-radius: 5px;
+    background-color: aquamarine;
+    font-size: 30px;
+    font-weight: 600;
+    padding: 0 10px;
+    border: none;
+    cursor: pointer;
+}
