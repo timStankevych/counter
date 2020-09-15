@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Counter from './Counter';
+import Counter from './Components/Counter/Counter';
+import Settings from './Components/Settings/Settings';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-      <Counter/>
+      <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
