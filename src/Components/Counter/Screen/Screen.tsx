@@ -8,7 +8,7 @@ type PropsType = {
 
 const Screen =(props: PropsType) => {
 
-    const classNameLogic = props.count === props.maxValue ? 'screen5' : 'screen';
+    const classNameLogic = props.count === props.maxValue ? 'screenMax' : 'screen';
 
     return (
         <div className={classNameLogic}>{props.count}</div>

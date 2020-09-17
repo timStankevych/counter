@@ -3,18 +3,22 @@ import './Settings.module.css'
 import ScreenSettings from './ScreenSettings/ScreenSettings';
 import Button from '../Buttons/Button/Button';
 
+type PropsType = {
+    Min: (value: number) => void
+    Max: (value: number) => void
+    onClickSet: () => void
+}
 
-const Settings = () => {
-
+const Settings = (props: PropsType) => {
 
     return (
         <div className="counter">
             <ScreenSettings
-            maxValue={12}
-            minValue={1}
+                Min={props.Min}
+                Max={props.Max}
             />
             <div className="buttons">
-                <Button title={'inc'} callBack={() => {}} disabled={false}/>
+                <Button title={'set'} callBack={props.onClickSet} disabled={false}/>
             </div>
         </div>
     )
