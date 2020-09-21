@@ -7,6 +7,12 @@ type PropsType = {
     Min: (value: number) => void
     Max: (value: number) => void
     onClickSet: () => void
+    min: number
+    max: number
+    setDisabled: (value: boolean) => void
+    disabled: boolean
+    errorHandler: () => void
+    error: boolean
 }
 
 const Settings = (props: PropsType) => {
@@ -16,9 +22,14 @@ const Settings = (props: PropsType) => {
             <ScreenSettings
                 Min={props.Min}
                 Max={props.Max}
+                min={props.min}
+                max={props.max}
+                errorHandler={props.errorHandler}
+                setDisabled={props.setDisabled}
+                error={props.error}
             />
             <div className="buttons">
-                <Button title={'set'} callBack={props.onClickSet} disabled={false}/>
+                <Button title={'set'} callBack={props.onClickSet} disabled={props.disabled}/>
             </div>
         </div>
     )

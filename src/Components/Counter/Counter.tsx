@@ -5,11 +5,12 @@ import Screen from './Screen/Screen';
 
 type PropsType = {
     maxValue: number
-    count: number
+    display: string
     Count: () => void
     Reset: () => void
     incDisabled: boolean
     resetDisabled: boolean
+    errorText: string
 }
 
 const Counter = (props: PropsType) => {
@@ -17,7 +18,8 @@ const Counter = (props: PropsType) => {
     return (
         <div className="counter">
             <Screen maxValue={props.maxValue}
-                    count={props.count}/>
+                    display={props.display}
+                    errorText={props.errorText}/>
             <Buttons Count={props.Count}
                      Reset={props.Reset}
                      incDisabled={props.incDisabled}

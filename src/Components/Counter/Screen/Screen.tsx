@@ -2,16 +2,18 @@ import React from 'react';
 import './Screen.css'
 
 type PropsType = {
-    count: number
+    display: string
     maxValue: number
+    errorText: string
 }
 
 const Screen =(props: PropsType) => {
 
-    const classNameLogic = props.count === props.maxValue ? 'screenMax' : 'screen';
+    const classNameLogic = Number(props.display) === props.maxValue ? 'screenMax' : 'screen';
 
-    return (
-        <div className={classNameLogic}>{props.count}</div>
+    return (<>
+        <div className={classNameLogic}>{props.display}</div>
+        </>
     )
 }
 export default Screen

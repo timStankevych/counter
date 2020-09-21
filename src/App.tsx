@@ -5,52 +5,42 @@ import cl from './App.module.css';
 
 const App = () => {
 
-    const [minValue, setMinValue] = useState<number>(1);
-    const [maxValue, setMaxValue] = useState<number>(2);
-    const [min, setMin] = useState<number>(3);
-    const [max, setMax] = useState<number>(4);
-    const [error, setError] = useState('enter values and press "set"');
-    const [disabled, setDisabled] = useState(true);
+    const [minValue, setMinValue] = useState<number>(0);
+    const [maxValue, setMaxValue] = useState<number>(0);
+    const [min, setMin] = useState<number>(0);
+    const [max, setMax] = useState<number>(0);
+    const [errorText, setErrorText] = useState('enter values and press "set"');
+    const [display, setDisplay] = useState(errorText);
+    const [error, setError] = useState(false);
+    const [disabled, setDisabled] = useState(false);
+    const [count, setCount] = useState(minValue);
 
-    let Min = (value: number) => setMin(value)
-    let Max = (value: number) => setMax(value)
+    let Min = (value: number) => setMin(value);
+    let Max = (value: number) => setMax(value);
 
     const onClickSet = () => {
         setMinValue(min);
         setMaxValue(max);
         setCount(min);
-    }
-    let [count, setCount] = useState(minValue);
+        setDisabled(true);
+        setDisplay(String(count));
+    };
 
 
     const errorHandler = () => {
-        if (minValue < 0 || (minValue > 0 && minValue === maxValue) || maxValue < minValue) {
-            setError('Incorrect value');
+        if (min > max || min < 0 || min === max) {
+            setErrorText('Incorrect value');
             setDisabled(true);
-        } else {
-            setError('enter values and press "set"');
+            setError(true);
+
+        }
+        if (min >= 0 && max > min && min !== max) {
+            setErrorText('enter values and press "set"');
             setDisabled(false);
+            setError(false);
         }
     };
 
-    useEffect(() => {
-        errorHandler();
-    }, [minValue, maxValue]); // eslint-disable-line react-hooks/exhaustive-deps
-
-    useEffect(() => {
-        if (minValue === 0) {
-            const sV = localStorage.getItem('startValue');
-            sV && setMinValue(+sV);
-        }
-    }, [minValue]); // eslint-disable-line react-hooks/exhaustive-deps
-
-    useEffect(() => {
-        if (maxValue === 0) {
-            const mV = localStorage.getItem('maxValue');
-            mV && setMaxValue(+mV);
-            localStorage.clear();
-        }
-    }, [maxValue]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const Count = () => {
         if (count < maxValue) {
@@ -65,15 +55,22 @@ const App = () => {
     return (
         <div className={cl.App}>
             <Settings
-            Min={Min}
-            Max={Max}
-            onClickSet={onClickSet}/>
+                Min={Min}
+                Max={Max}
+                min={min}
+                max={max}
+                onClickSet={onClickSet}
+                disabled={disabled}
+                setDisabled={setDisabled}
+                errorHandler={errorHandler}
+                error={error}/>
             <Counter maxValue={maxValue}
-                     count={count}
+                     display={display}
                      Count={Count}
                      Reset={Reset}
                      incDisabled={incDisabled}
-                     resetDisabled={resetDisabled}/>
+                     resetDisabled={resetDisabled}
+                     errorText={errorText}/>
         </div>
     );
 };
