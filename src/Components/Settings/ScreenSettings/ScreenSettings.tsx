@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import cl from './ScreenSettings.module.css';
 
 type PropsType = {
@@ -6,7 +6,6 @@ type PropsType = {
     Max: (value: number) => void
     min: number
     max: number
-    errorHandler: () => void
     setDisabled: (value: boolean) => void
     error: boolean
 }
@@ -20,13 +19,10 @@ const ScreenSettings = (props: PropsType) => {
     let maxCountChange = () => {
         let max = maxCountElement.current ? Number(maxCountElement.current.value) : props.max;
         props.Max(max);
-        props.errorHandler()
     };
     let minCountChange = () => {
         let min = minCountElement.current ? Number(minCountElement.current.value) : props.min;
         props.Min(min);
-            props.errorHandler()
-
     };
 
     let inputClass = props.error ? cl.screen5 : cl.screen;

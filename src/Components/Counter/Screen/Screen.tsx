@@ -4,7 +4,6 @@ import './Screen.css'
 type PropsType = {
     display: string
     maxValue: number
-    errorText: string
 }
 
 const Screen =(props: PropsType) => {

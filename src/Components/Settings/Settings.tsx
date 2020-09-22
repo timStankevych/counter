@@ -11,7 +11,6 @@ type PropsType = {
     max: number
     setDisabled: (value: boolean) => void
     disabled: boolean
-    errorHandler: () => void
     error: boolean
 }
 
@@ -24,7 +23,6 @@ const Settings = (props: PropsType) => {
                 Max={props.Max}
                 min={props.min}
                 max={props.max}
-                errorHandler={props.errorHandler}
                 setDisabled={props.setDisabled}
                 error={props.error}
             />

@@ -23,7 +23,7 @@ const App = () => {
         setMaxValue(max);
         setCount(min);
         setDisabled(true);
-        setDisplay(String(count));
+        setDisplay(String(min));
     };
 
 
@@ -41,16 +41,26 @@ const App = () => {
         }
     };
 
+    useEffect(() => {
+        errorHandler()
+    }, [min, max]);
+
 
     const Count = () => {
         if (count < maxValue) {
-            return (setCount(count + 1));
+            setDisplay(String(count+1))
+            return (
+                setCount(count + 1)
+            );
         }
     };
 
     const incDisabled = count >= maxValue;
     const resetDisabled = count === minValue;
-    const Reset = () => setCount(minValue);
+    const Reset = () => {
+        setCount(minValue)
+        setDisplay(String(minValue));
+    };
 
     return (
         <div className={cl.App}>
@@ -62,15 +72,13 @@ const App = () => {
                 onClickSet={onClickSet}
                 disabled={disabled}
                 setDisabled={setDisabled}
-                errorHandler={errorHandler}
                 error={error}/>
             <Counter maxValue={maxValue}
                      display={display}
                      Count={Count}
                      Reset={Reset}
                      incDisabled={incDisabled}
-                     resetDisabled={resetDisabled}
-                     errorText={errorText}/>
+                     resetDisabled={resetDisabled}/>
         </div>
     );
 };
